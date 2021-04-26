@@ -1,22 +1,24 @@
 var http = require("http");
 var fs = require("fs");
 
+/*
 var myReadStream = fs.createReadStream(__dirname + "/readMe.txt");
 var myWriteStream = fs.createWriteStream(__dirname + "/writeMe.txt");
 
 myReadStream.pipe(myWriteStream);
+*/
 
-
-// myReadStream.on("data", function(chunk){
-//     console.log("new chunk received:");
-//     myWriteStream.write(chunk);
-// });
-
+/*
+myReadStream.on("data", function(chunk){
+    console.log("new chunk received:");
+    myWriteStream.write(chunk);
+});
+*/
 
 var server = http.createServer(function(req, res){
     console.log("request was made " + req.url);
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    var myReadStream = fs.createReadStream(__dirname + "/readMe.txt", "utf8");
+    res.writeHead(200, {"Content-Type": "text/html"});
+    var myReadStream = fs.createReadStream(__dirname + "/index.html", "utf8");
     myReadStream.pipe(res);
 });
 
